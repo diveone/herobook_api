@@ -67,7 +67,6 @@ coverage.xml
 .static_storage/
 .media/
 local_settings.py
-assets/
 logs/
 
 # Flask stuff:
