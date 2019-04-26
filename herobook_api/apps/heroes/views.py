@@ -9,7 +9,7 @@ logger = logging.getLogger('heroes.views')
 
 
 # pylint: disable=missing-docstring
-class HeroDetailAPIView(generics.RetrieveUpdateAPIView):
+class HeroDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hero.objects.all()
     serializer_class = HeroSerializer
     permission_classes = (AllowAny,)
