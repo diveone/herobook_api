@@ -36,7 +36,7 @@ class Command(BaseCommand):
 
             with open(hero_stats_path) as file:
                 heroes_data = csv.DictReader(file, fieldnames=stat_fields)
-                heroes= list(map(update_hero, heroes_data))
+                heroes = list(map(update_hero, heroes_data))
 
                 self.stdout.write(self.style.SUCCESS(f'Successfully updated {len(heroes)} heroes'))
         except (CommandError, TypeError, ValueError, KeyError) as exc:
