@@ -21,6 +21,8 @@ CONFIG_ROOT = dirname(abspath(__file__))
 
 # CURRENT PROJECT_DIR: herobook_api/herobook_api
 PROJECT_PATH = dirname(CONFIG_ROOT)
+ASSETS_PATH = join_paths(PROJECT_PATH, 'assets')
+# Heroku config var
 BASE_DIR = PROJECT_PATH
 
 # Quick-start development settings - unsuitable for production
