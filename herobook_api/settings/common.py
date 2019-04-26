@@ -33,6 +33,7 @@ BASE_DIR = PROJECT_PATH
 # =======================================================================
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
+# APPEND_SLASH = False
 
 # List of hosts allowed to access the app
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
