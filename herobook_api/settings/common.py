@@ -21,6 +21,7 @@ CONFIG_ROOT = dirname(abspath(__file__))
 
 # CURRENT PROJECT_DIR: herobook_api/herobook_api
 PROJECT_PATH = dirname(CONFIG_ROOT)
+BASE_DIR = PROJECT_PATH
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -171,3 +172,4 @@ REST_FRAMEWORK = {
 # LOGGING SETTINGS
 # https://docs.djangoproject.com/en/2.0/topics/logging
 # =======================================================================
+
