@@ -19,7 +19,7 @@ CONFIG_ROOT = dirname(abspath(__file__))
 # DJANGO_ROOT = dirname(CONFIG_ROOT)
 # PROJECT_ROOT = dirname(DJANGO_ROOT)
 
-# CURRENT PROJECT_DIR: instructkit/instructkit
+# CURRENT PROJECT_DIR: herobook_api/herobook_api
 PROJECT_PATH = dirname(CONFIG_ROOT)
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +30,17 @@ PROJECT_PATH = dirname(CONFIG_ROOT)
 # =======================================================================
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = []
+
+# List of hosts allowed to access the app
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000',
+    'localhost:3000',
+    '127.0.0.1:8000',
+    '127.0.0.1:3000',
+    'localhost:8080',
+    '127.0.0.1:8080',
+)
 
 # =======================================================================
 # APPLICATIONS
@@ -43,15 +53,17 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
-    'rest_framework'
-]
-
-CUSTOM_APPS = [
     'accounts',
+    'heroes',
+]
+EXTERNAL_APPS = [
+    # Tools
+    'rest_framework',
+    'django_extensions',
+    'corsheaders',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS
+INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 # =======================================================================
