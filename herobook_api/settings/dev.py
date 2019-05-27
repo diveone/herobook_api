@@ -49,8 +49,10 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+# =======================================================================
+# DATABASE SETTINGS
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# =======================================================================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -62,29 +64,17 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
 # =======================================================================
 # MEDIA MANAGEMENT
 # Static files and template management
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 # =======================================================================
-
 STATIC_URL = '/static/'
 
 
 # =======================================================================
 # LOGGING SETTINGS
-# https://docs.djangoproject.com/en/2.0/topics/logging
+# https://docs.djangoproject.com/en/2.2/topics/logging
 # =======================================================================
 LOGGING = {
     'disable_existing_loggers': False,
@@ -93,7 +83,7 @@ LOGGING = {
         'console': {
             # logging handler that outputs log messages to terminal
             'class': 'logging.StreamHandler',
-            'level': 'DEBUG', # message level to be written to console
+            'level': 'DEBUG',  # message level to be written to console
         },
     },
     'loggers': {
@@ -103,8 +93,8 @@ LOGGING = {
             # root level logger.
             'handlers': ['console'],
             'level': 'DEBUG',
-            'propagate': False, # this tells logger to send logging message
-                                # to its parent (will send if set to True)
+            'propagate': False,  # this tells logger to send logging message
+                                 # to its parent (will send if set to True)
         },
         'django.db': {
             # django also has database level logging
