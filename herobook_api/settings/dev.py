@@ -61,11 +61,31 @@ DATABASES = {
         'PASSWORD': 'admin'
     }
 }
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+# =======================================================================
+# MEDIA MANAGEMENT
+# Static files and template management
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# =======================================================================
 
 STATIC_URL = '/static/'
 
+
+# =======================================================================
+# LOGGING SETTINGS
+# https://docs.djangoproject.com/en/2.0/topics/logging
+# =======================================================================
 LOGGING = {
     'disable_existing_loggers': False,
     'version': 1,

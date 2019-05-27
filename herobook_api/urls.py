@@ -1,8 +1,7 @@
-from django.urls import path
-
-from heroes.views import HeroListAPIView, HeroDetailAPIView
+from django.urls import path, include
+from django.contrib import admin
 
 urlpatterns = [
-    path('api/v1/heroes/', HeroListAPIView.as_view(), name='heroes'),
-    path('api/v1/heroes/<uuid>', HeroDetailAPIView.as_view(), name='hero-detail'),
+    path('admin/', admin.site.urls),
+    path('api/v1/', include(('api_urls', 'api'))),
 ]

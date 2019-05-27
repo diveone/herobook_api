@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
+import datetime
 import os
 from os.path import abspath, dirname, join as join_paths
 
@@ -40,6 +41,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost:3000',
+    'localhost:4200',
     '127.0.0.1:8000',
     '127.0.0.1:3000',
     'localhost:8080',
@@ -96,8 +98,7 @@ STATIC_URL = '/static/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [join_paths(PROJECT_PATH, '../../templates')]
-        ,
+        'DIRS': [join_paths(PROJECT_PATH, '../../templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -164,11 +165,8 @@ USE_TZ = True
 # your dev.py
 # =======================================================================
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 25
 }
 
 # =======================================================================
