@@ -1,8 +1,8 @@
 import logging
 
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny, IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from heroes.serializers import Hero, HeroSerializer
 
 logger = logging.getLogger('heroes.views')
@@ -13,6 +13,7 @@ class HeroDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hero.objects.all()
     serializer_class = HeroSerializer
     permission_classes = (AllowAny,)
+    # authentication_classes = (JSONWebTokenAuthentication,)
     lookup_field = 'uuid'
 
 
@@ -21,3 +22,4 @@ class HeroListAPIView(generics.ListCreateAPIView):
     queryset = Hero.objects.all()
     serializer_class = HeroSerializer
     permission_classes = (AllowAny,)
+    # authentication_classes = (JSONWebTokenAuthentication,)
