@@ -7,13 +7,14 @@ from django.utils.http import urlencode
 from .factories import UserFactory, User
 
 
+@skip('Not yet implemented')
 class UserAuthTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='loggyuser', password='password')
         UserFactory()
 
-    def test_user_signup(self):
-        url = reverse('create-user')
+    def test_user_creation(self):
+        url = reverse('api:accounts:create')
         user = urlencode({
             'username': 'FakeUser',
             'password': 'Password1!',

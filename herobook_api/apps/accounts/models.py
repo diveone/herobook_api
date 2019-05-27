@@ -3,16 +3,14 @@ from django.urls import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from shortuuidfield import ShortUUIDField
+
 
 class User(AbstractUser):
-    # First Name and Last Name do not cover name patterns
-    # around the globe.
-    # Django Cookiecutter: https://github.com/pydanny/cookiecutter-django
+    uuid = ShortUUIDField()
     name = models.CharField(_('Name of User'), blank=True, max_length=255)
     email = models.EmailField(_('email address'), blank=False, unique=True)
+    api_secret = models.CharField(max_length=1000, blank=True)
 
     def __str__(self):
         return self.username
-
-    def get_absolute_url(self):
-        return reverse('api:users-detail', kwargs={'pk': self.id})
