@@ -25,8 +25,7 @@ DEBUG = True
 ALLOWED_HOSTS += []
 
 # Application definition
-DJANGO_APPS += [
-]
+DJANGO_APPS += []
 EXTERNAL_APPS += []
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS
