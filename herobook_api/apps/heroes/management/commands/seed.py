@@ -20,6 +20,7 @@ class Command(BaseCommand):
                        'speed', 'durability', 'power', 'combat', 'total']
 
         def update_hero(hero):
+            # TODO: Do checks for dirty field values like empty strings, dashes
             if 'id' in hero.keys():
                 hero.pop('id')
             if 'total' in hero.keys():

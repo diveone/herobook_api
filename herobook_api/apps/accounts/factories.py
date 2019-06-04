@@ -1,5 +1,4 @@
 import factory
-import factory.fuzzy
 
 from .models import User
 
@@ -15,5 +14,3 @@ class UserFactory(factory.DjangoModelFactory):
     last_name = factory.Faker('name')
     password = 'password'
     email = factory.LazyAttribute(lambda u: '%s@example.com' % u.username)
-    api_key = 'secretz'
-

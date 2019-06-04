@@ -23,12 +23,18 @@ Run server: `python3 manage.py runserver`
 ## Deployment to Heroku
 
 ```
-git push heroku master
+git tag -a v1.1.0 -m "Introducing Auth"
+git push heroku v1.1.0:master
 
 # OR if using a different branch than master:
 git push heroku otherBranch:master
 ```
 
+To make manual changes on server use `heroku run` or use Heroku dashboard.
+
 ## Usage
 
-Default API student key: `SUPERSTUD`
+Default API student key: `SUPERSTUDY`
+
+Admin user: instructormaster
+Admin password: iamtheone
