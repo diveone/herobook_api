@@ -20,7 +20,7 @@ class Command(BaseCommand):
         student.first_name = 'Student'
         student.last_name = 'Dev'
         token = token_urlsafe(32)
-        student.api_secret = options['api_secret'] or token
+        student.api_secret = options.get('api_secret', token)
         student.save()
 
         self.stdout.write(self.style.SUCCESS(f'Successfully updated student user.'))

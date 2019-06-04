@@ -39,13 +39,10 @@ DEBUG = False
 # List of hosts allowed to access the app
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
 CORS_ORIGIN_WHITELIST = (
-    'localhost:8000',
-    'localhost:3000',
-    'localhost:4200',
-    '127.0.0.1:8000',
-    '127.0.0.1:3000',
-    'localhost:8080',
-    '127.0.0.1:8080',
+    'http://localhost:4200',
+    'http://127.0.0.1:4200',
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
 )
 
 # =======================================================================
@@ -65,13 +62,14 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     # Tools
     'rest_framework',
+    'rest_framework.authtoken',
     'django_extensions',
     'corsheaders',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS
-
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,8 +77,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
+
 
 # =======================================================================
 # CONFIGURATION SETTINGS
@@ -171,6 +169,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),

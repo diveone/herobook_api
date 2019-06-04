@@ -5,7 +5,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'herobook_api.settings.common')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'herobook_api.settings.dev')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

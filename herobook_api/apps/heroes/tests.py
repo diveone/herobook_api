@@ -1,16 +1,17 @@
-from unittest import skip
-
 from django.conf import settings
 from django.test import TestCase
-from django.urls import reverse, resolve
+from django.urls import reverse
 
-from accounts.factories import User, UserFactory
+from rest_framework.authtoken.models import Token
+
+from accounts.factories import UserFactory
 from heroes.factories import HeroFactory
 
 
 class HeroViewsTestCase(TestCase):
     def setUp(self) -> None:
         self.API_LIMIT = settings.REST_FRAMEWORK['PAGE_SIZE']
+        self.user_factory = UserFactory()
 
     def test_get_all_heroes(self):
         url = reverse('api:heroes:list')
@@ -39,11 +40,7 @@ class HeroViewsTestCase(TestCase):
         response = self.client.get(url)
         self.assertContains(response, hero.name, status_code=200)
 
-    @skip('To implement with 1.1 dev api auth')
     def test_create_new_hero(self):
-        # user = UserFactory(name='testuser', email='testuser@example.co',
-        #                    password='password')
-        user = User.objects.create_user('testuser', email='test@ex.co', password='secretz107')
         url = reverse('api:heroes:list')
 
         hero_data = {
@@ -52,10 +49,19 @@ class HeroViewsTestCase(TestCase):
             'gender': 'female',
             'power': 'painter'
         }
-        user = {'username': user.username,
-                'password': user.password}
-        auth = self.client.post('/authorize/', user)
+        token = Token.objects.create(user=self.user_factory)
         response = self.client.post(url, hero_data,
-                                    headers={'Authorization': auth['token']},
+                                    HTTP_AUTHORIZATION=f'Token {token}',
                                     content_type='application/json')
         self.assertContains(response, 'Super Baddie', status_code=201)
+
+    def test_update_hero(self):
+        hero = HeroFactory()
+        url = reverse('api:heroes:detail', args=[hero.uuid])
+
+        hero_data = {'alignment': 'bad'}
+        token = Token.objects.create(user=self.user_factory)
+        response = self.client.patch(url, hero_data,
+                                     HTTP_AUTHORIZATION=f'Token {token}',
+                                     content_type='application/json')
+        self.assertContains(response, hero.name, status_code=200)

@@ -20,10 +20,14 @@ class Command(BaseCommand):
                        'speed', 'durability', 'power', 'combat', 'total']
 
         def update_hero(hero):
+            # TODO: Do checks for dirty field values like empty strings, dashes
             if 'id' in hero.keys():
                 hero.pop('id')
             if 'total' in hero.keys():
                 hero.pop('total')
+            exists = Hero.objects.filter(name=hero['name']).update(**hero)
+            if exists:
+                return Hero.objects.filter(name=hero['name']).first()
             return Hero.objects.update_or_create(**hero)
 
         try:
