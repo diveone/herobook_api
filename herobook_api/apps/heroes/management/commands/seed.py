@@ -24,6 +24,9 @@ class Command(BaseCommand):
                 hero.pop('id')
             if 'total' in hero.keys():
                 hero.pop('total')
+            exists = Hero.objects.filter(name=hero['name']).update(**hero)
+            if exists:
+                return Hero.objects.filter(name=hero['name']).first()
             return Hero.objects.update_or_create(**hero)
 
         try:
