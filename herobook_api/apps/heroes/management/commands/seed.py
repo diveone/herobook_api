@@ -14,8 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         hero_info_path = join_paths(settings.ASSETS_PATH, 'characters_info.csv')
         hero_stats_path = join_paths(settings.ASSETS_PATH, 'characters_stats.csv')
-        info_fields = ['id', 'name', 'alignment', 'gender', 'eye_color', 'race', 'hair_color',
-                       'publisher', 'skin_color', 'height', 'weight']
+        info_fields = ['id', 'name', 'alignment', 'gender', 'eye_color', 'race',
+                       'hair_color', 'publisher', 'skin_color', 'height', 'weight']
         stat_fields = ['name', 'alignment', 'intelligence', 'strength',
                        'speed', 'durability', 'power', 'combat', 'total']
 

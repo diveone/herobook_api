@@ -4,10 +4,13 @@ from shortuuidfield import ShortUUIDField
 
 
 class Hero(models.Model):
+    PLACEHOLDER_IMAGE = 'https://via.placeholder.com/380x280.png?text=Hero'
+
     uuid = ShortUUIDField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    image = models.URLField(null=True, default=PLACEHOLDER_IMAGE)
     name = models.CharField(max_length=300)
     alignment = models.CharField(max_length=300)
     gender = models.CharField(max_length=300)
