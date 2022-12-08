@@ -9,7 +9,7 @@ verify_ssl = true
 django-shortuuidfield = "*"
 django-cors-headers = "*"
 django-heroku = "*"
-certifi = "==2019.3.9"
+certifi = "==2022.12.7"
 django-debug-toolbar = "==1.11"
 django-extensions = "==2.1.6"
 djangorestframework = "==3.9.2"
